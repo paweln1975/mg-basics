@@ -116,3 +116,10 @@ git tag {tag-name} {commit-id} - ustawia taga na danym commicie
 git show 1.0 -- pokazuje commit z danym tag-name
 git tag -d {tag-name} - usuwa taga
 git tag -a {tag-name} -m "Comment" - tworzy nowego taga
+
+-- remote branch
+git push origin {branch} -- push to remote orgin URL
+	zdalnie remotes/origin/master
+git branch -a  -- wyświetla zdalne branche tracking i lokalne
+git pull origin master - pobiera z repo zdalnego  (pull = fetch + merge)
+git ls-remote - wyświetla na serwerze

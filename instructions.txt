@@ -1,0 +1,118 @@
+git init - stworzenie repo
+
+git status - status plików
+
+git log - wypisuje liste commitów
+
+git add - dodaje do staging area
+
+git commit -m
+
+git config --global user.name
+git config --global user.email
+
+git checkout commit_id / master
+
+-- new branch
+
+git branch
+
+git branch branch-name  - nowy branch
+git checkout branch-name
+
+git checkout -b branch-name - nowy i checkout
+
+-- merge
+git merge branch-name
+
+-- switching
+git switch branch-name
+git switch -c branch-name - nowy branch
+
+-- files
+git ls-files - wypisanie plików
+git rm file-name - usuniecie pliku
+git commit
+
+--  rollback unstaged changes
+git checkout file-name
+git checkout .    - dla wszystkich plików, przywrócenie do ostatniego commitu
+git restore . 
+
+git clean -df   - usunięcie plików z staging area
+
+-- rollback staged changes
+git reset file-name
+git checkout file-name
+
+git restore --staged file-name  -- usunięcie zmiana w staged area dla danego pliku
+
+-- deleting commits
+git reset --soft HEAD~1   - usuwa ostatni commit
+git reset HEAD~1          - usuwa ostatni commit i wywala plik ze staging area
+git reset --hard HEAD~1   - usuwa ostatni commit i usuwa plik ze staging area i z working dir
+
+
+-- delete branch
+git branch -D branch-name
+
+-- commit changes to previous commits (in detached HEAD)
+git checkout commit-id
+git add .
+git commit -m "comment"
+
+git branch branch-name
+git checkout master
+git merge branch-name
+git branch -d branch-name
+
+
+-- stash (save uncommited & unstaged changes)
+git stash push -m "message"  -- przesuwa do stash i wraca do ostatniego commita
+git stash apply - przywraca zmiany ze stash
+git stash list
+git stash apply {number}   -- from list
+git stash pop {number} -- wyciąga zmiany ze stash i usuwa go z listy
+git stash drop {number} -- usuwa
+git stash clear -- wywala wszystko
+
+
+-- odzyskanie usunietego commit'u (poleceniem git reset) / branch'a (git branch -D)
+git reflog - wyświetla historię z ostatnich 14-dni z indexami
+git reset --hard {index} - na danym branchu
+git checkout {index} - na usuniętym branchu, potem
+    git switch -c {branch-name}
+    git checkout master
+    git merge {branch-name}
+
+
+-- merge  (fast forward)
+git merge {feature-branch}   
+git merge --sqaash {feature-branch} - wrzuca wszystkie commity z feature-branch do staging area (trzeba zrobić commit)
+
+
+-- merge (non fast forward, recursive)
+git merge --no-ff {feature-branch}  - dodatkowy commit się tworzy (wtedy kiedy po branchu były commit'y do mastera)
+git merge --abort  -- wycofanie się z merga
+git log --merge
+git diff
+
+-- rebase (przenosi commity po utworzeniu feature-branch z mastera do feature branch, ułatwia potem merge, uwaga rebase tworzy nowe commity). Never rebase commits outside your repository.
+git rebase master 
+
+When to rebase:
+ - new commits in master branch while working with feature-branch
+ - feature relies on additional commits in master branch
+ - feature is finished - implementation into master without merge commit
+
+
+-- cherry-pick - add specific commit to branch (kopiuje komity i nadaje im nowe id)
+git cherry-pick {commmit-id}
+
+
+-- tagging commits (annotated text with full info about a person)
+git tag   - lista wszystkich tagów
+git tag {tag-name} {commit-id} - ustawia taga na danym commicie
+git show 1.0 -- pokazuje commit z danym tag-name
+git tag -d {tag-name} - usuwa taga
+git tag -a {tag-name} -m "Comment" - tworzy nowego taga

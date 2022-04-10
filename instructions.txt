@@ -118,8 +118,14 @@ git tag -d {tag-name} - usuwa taga
 git tag -a {tag-name} -m "Comment" - tworzy nowego taga
 
 -- remote branch
-git push origin {branch} -- push to remote orgin URL
+git push origin {branch} -- push to remote orgin URL, od razu założy tego branch'a
 	zdalnie remotes/origin/master
-git branch -a  -- wyświetla zdalne branche tracking i lokalne
+git branch -a  -- wyświetla wszystkie branche
+git branch -r  -- wyświetla wszystkie zdalne branche
 git pull origin master - pobiera z repo zdalnego  (pull = fetch + merge)
 git ls-remote - wyświetla na serwerze
+git remote -- wyświetla zdalny server
+git remote show origin -- wyświetla status zdalnego servera origin
+git branch --track [branchname] origin/[branchname]    - tworzy lokalnego brancha śledzącego zmiany (te same nazwy local i remote), zsynchronizowany z branchem zdalnym
+
+git push -u origin [branchname] - push do origin i od razu tworzy local tracking branch (bardzo fajna opcja, nie ma potrzeby usuwania lokalnego branch'a i tworzenia nowego z opcją tracking)
